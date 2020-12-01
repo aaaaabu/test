@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			#box{
+				width: 200px;
+				height: 100px;
+				border: 1px solid #000;
+				text-align: center;
+				left: 300px;
+				top:300px;
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<p>我是你大哥不?</p>
+			叫大哥
+			<input type="button" id="agree" value="是" disabled="disabled" />
+			<input type="button" id="refuse" value="不是" />
+		</div>
+		<script>
+			window.onload = function(){
+				// 获取元素
+				var div = document.querySelector("#box");
+				var text = document.querySelector("p");
+				var agree = document.querySelector("#agree");
+				var refuse = document.querySelector("#refuse");
+				// 设置坐标
+				var x = 0;
+				var y = 0;
+				// 点击一次修改内部文字
+				var arr = [
+					"真的吗？你想好再说话",
+					"再给你一次重新组织语言的机会",
+					"劝你好好想想",
+					"你有点皮,再这样我生气了",
+					"我真的生气了",
+					"既然你这么不识趣,那就告辞,江湖不见"
+				]
+				var index = 0;
+				var len = arr.length;
+				refuse.onclick = ()=>{
+					// 获取随机x和y
+					// x = Math.floor(Math.random()*1000);
+					// y = Math.floor(Math.random()*680);
+					// 设置#box位置随机移动
+					div.style.left = x + "px";
+					div.style.top = y + "px";
+					text.innerHTML = arr[index++];
+					// agree.disabled = index>=len-1 false;
+					if(index>=len){
+						index = 0;
+						agree.disabled = false;
+						refuse.disabled = true;
+					}
+				}
+				agree.onclick = ()=>{
+					alert("小弟好!");
+				}
+			}
+		</script>
+	</body>
+</html>
